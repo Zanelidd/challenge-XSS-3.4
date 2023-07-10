@@ -24,7 +24,9 @@
                     Hack hint: typing <script>alert(1)</script> in the url bar won't work, 
                     but unfortunately, typing something like <img src=" " onerror="alert(1)"> will! -->
 
-            <p class="text-center" id="welcome-text"></p>
+            <h1 class="text-center">
+          How do you do, <span id="welcome-text"></span> ?
+        </h1>
             <p class="text-center small">
                 (Change the 'name' parameter in the URL to replace "applicant" by your identity. Ex :
                 www.blop.com/index.html?name=Simone)</p>
@@ -98,7 +100,7 @@
             userName = userParam;
         }
 
-        document.getElementById("welcome-text").innerHTML = "<h1>How do you do, " + userName + "?</h1>";
+      document.getElementById("welcome-text").textContent = userName;
 
         //  XSS vulnerability #2
 
