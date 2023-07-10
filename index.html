@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self'"> -->
+
     
     <title>XSS</title>
 
@@ -106,7 +108,7 @@
         input.addEventListener("input", updateValue);
 
         function updateValue(e) {
-            log.innerHTML = e.target.value;
+            log.textContent = e.target.value;
         }
 
         //  XSS vulnerability #3
@@ -118,12 +120,12 @@
         showButton.addEventListener("click", showHTML);
 
         function showHTML() {
-            htmlOutput.innerHTML = htmlInput.value;
+            htmlOutput.innerHTML = DOMPurify.sanitize(htmlInput.value);
         }
 
         //  XSS vulnerability #4
 
-        const redir = params.get("goto");
+        const redir = encodeURIComponent(params.get("goto"));
         if (redir !== null && redir !== "null") {
             document.location = redir;
         }
